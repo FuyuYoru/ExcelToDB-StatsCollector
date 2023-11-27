@@ -1,0 +1,23 @@
+.tabsPanel__list {
+	display: flex;
+  flex-direction: row;
+  margin: 0px;
+  padding: 0px;
+  list-style-type: none;
+}
+
+.tabsPanel__list li {
+	/* border: 1px solid black; */
+  padding: 5px 10px;
+  text-align: center;
+	transition: background-color 0.5s;
+}
+
+.tabsPanel__list li:hover {
+	background-color: #00acb1;
+	user-select: none;
+}
+
+.tabsPanel__list li.active {
+	border-bottom: 1px solid #00acb1;
+}

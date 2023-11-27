@@ -1,0 +1,27 @@
+header {
+    width: 100%;
+    min-height: 30px;
+    height: 30px;
+    position: sticky;
+    top: 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0px;
+    margin: 0px;
+    background-color: #04151ce3;
+    color: white;
+}
+
+header button{
+    height: 100%;
+    text-align: center;
+    outline: none;
+    border: 0;
+    background-color: inherit;
+    color: inherit;
+}
+
+header button:hover{
+    background-color: #00acb1;
+}

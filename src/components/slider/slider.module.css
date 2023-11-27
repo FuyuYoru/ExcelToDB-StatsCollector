@@ -1,0 +1,50 @@
+.sliderList {
+	display: flex;
+	flex-direction: row;
+	margin: 0px;
+  padding: 0px;
+  list-style-type: none;
+}
+
+.sliderItem {
+	padding: 5px 10px;
+  text-align: center;
+  transition: background-color 0.5s;
+	user-select: none;
+	width: 100px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+.sliderItem_selected {
+	padding: 5px 10px;
+  text-align: center;
+  transition: background-color 0.5s;
+	user-select: none;
+	width: 100px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	border-bottom: 1px solid #00acb1;
+}
+
+.sliderItem:hover {
+	background-color: #00acb1;
+}
+
+.sliderContainer {
+	display: flex;
+  justify-content: center;
+}
+
+.sliderToggler {
+	width: 50px;
+	text-align: center;
+  transition: background-color 0.5s;
+	user-select: none;
+}
+
+.sliderToggler:hover {
+	background-color: #00acb1;
+}

@@ -1,0 +1,40 @@
+.collapsibleMenu__container {
+	position: relative;
+	background-color: black;
+	display: flex;
+	flex-direction: column;
+	max-width: 20vw;
+}
+
+.collapsibleMenu__container * {
+	text-align: left;
+}
+
+.collapsibleMenu__menu {
+	max-height: 0;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	transition: max-height 0.3s ease-out;
+	display: flex;
+	flex-direction: column;
+}
+
+.active {
+	max-height: 50vh;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+
+.collapsibleMenu__icon.active>svg {
+	transform: rotate(90deg);
+}
+
+.collapsibleMenu__icon>svg {
+	transform: rotate(0deg);
+	transition: transform 0.3s ease-out;
+}
+
+.collapsibleMenu__toggle {
+	display: flex;
+	flex-direction: column;
+}
