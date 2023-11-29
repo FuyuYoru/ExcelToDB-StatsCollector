@@ -35,23 +35,22 @@ const createWindow = () => {
 
 	// Open the DevTools.
 	mainWindow.webContents.openDevTools();
-	ipcMain.on('get-excel-sheetnames', async (event, selectedFile) => {
+	ipcMain.handle('get-excel-sheetnames', async (event, selectedFile) => {
 		try {
 			const sheetnames = await getExcelSheetnames(JSON.parse(selectedFile));
-			event.sender.send('excel-sheetnames-reply', JSON.stringify(sheetnames));
+			return (sheetnames)
 		} catch (error) {
-			console.error('Error processing Excel sheet names:', error);
-			event.sender.send('excel-sheetnames-reply', JSON.stringify({ error: error.message }));
+			throw error
 		}
 	});
 
-	ipcMain.on('get-excel-data', async (event, filepath, sheetname) => {
+	ipcMain.handle('get-excel-data', async (event, filepath, sheetname) => {
 		try {
 			const data = await getExcelData(filepath, sheetname);
-			event.sender.send('excel-data-reply', data);
+			return (data);
 		}
-		catch (errot) {
-			event.sender.send('excel-data-reply', JSON.stringify({ error: error.message }));
+		catch (error) {
+			throw error
 		}
 	});
 

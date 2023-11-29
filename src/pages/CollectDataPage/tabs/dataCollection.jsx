@@ -51,18 +51,19 @@ const DataCollectionTab = () => {
 			return;
 		}
 		try {
-			const request = JSON.stringify({
+			const request = {
 				path: selectedFile.path,
-				name: selectedFile.name
-			})
-			const temp = await window.pythonAPI.getSheetnames(request);
-			const responseData = JSON.parse(temp);
-
+				name: selectedFile.name,
+			};
+	
+			const responseData = await window.pythonAPI.getSheetnames(request);
+	
 			const modalData = {
 				title: responseData.filename,
 				data: responseData.sheetName,
 				datapath: selectedFile.path,
 			};
+	
 			setModalState({
 				visible: true,
 				...modalData,
