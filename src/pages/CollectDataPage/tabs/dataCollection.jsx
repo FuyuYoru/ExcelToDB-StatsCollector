@@ -76,7 +76,6 @@ const DataCollectionTab = () => {
 
 	return (
 		<React.Fragment>
-			{/* <h3>Данная вкладка предназначена для загрузки данных из Excel-файлов (.xlsx, .xlsm)</h3> */}
 			<div>
 				{tableData && Object.keys(tableData).length > 0 ? (
 					<select defaultValue={Object.keys(tableData)[0]} onChange={e => selectHandler(e.target.value)}>

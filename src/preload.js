@@ -20,17 +20,21 @@ contextBridge.exposeInMainWorld('pythonAPI', {
 		}
 	},
 });
-contextBridge.exposeInMainWorld('sqlite', {
-	tryDB: () => {
-		return new Promise((resolve, reject) => {
-			ipcRenderer.send('tryDB')
-			ipcRenderer.once('dbreply', (event, data) => {
-				resolve(data);
-			});
 
-			ipcRenderer.once('dbreply', (event, error) => {
-				reject(new Error(error));
-			});
-		})
+contextBridge.exposeInMainWorld('sqlite', {
+	tryDB: async (data) => {
+		const result = await ipcRenderer.invoke('sqlite:test', data);
+		console.log(result)
+		return result
+	},
+	tryGetAll: async () => {
+		const result = await ipcRenderer.invoke('sqlite:getAll');
+		console.log(result)
+		return result
+	},
+	tryAddWell: async (data) => {
+		const result = await ipcRenderer.invoke('sqlite:addWell', data);
+		console.log(result)
+		return result
 	}
-})
+}) 

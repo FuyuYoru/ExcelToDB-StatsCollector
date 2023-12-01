@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState, useRef } from "react";
+import { useSelector, } from "react-redux";
 import { Slider } from "../../../components/slider/slider.jsx";
 import { RedactableTable } from "../../../components/tables/redactableTable/RedactableTable.jsx";
 
@@ -39,10 +39,6 @@ const DataVerificationTab = () => {
 			<div style={{ maxHeight: '65vh', overflow: 'scroll' }}>
 				{selectedTable && <RedactableTable fileName={selectedFile} tableName={selectedTable} />}
 			</div >
-			<div className="buttonsContainer">
-				<button>Собрать</button>
-				<button>Отправить</button>
-			</div>
 		</>
 	)
 }

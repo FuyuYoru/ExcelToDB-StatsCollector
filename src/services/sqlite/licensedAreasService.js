@@ -5,12 +5,28 @@ export default class LicensedAreas {
 	}
 	getAllAreas() {
 		const sqlQuery = 'SELECT * FROM licensedAreas';
-		return this.databaseService.query(sqlQuery);
+		return this.dbService.getQuery(sqlQuery);
 	}
-	addArea(licenseNumber, fieldName, fieldID) {
-		const sqlQuery = 'INSERT INTO licensedAreas (licenseNumber, fieldName, fieldID) VALUE (?, ?, ?)';
+	getArea(licenseNum, field) {
+		const sqlQuery = `SELECT * FROM LicensedAreas
+			WHERE licenseNumber = ? AND fieldName = ?;`;
+		const params = [licenseNum, field];
+		return this.dbService.getQuery(sqlQuery, params);
+	}
+	// addArea(licenseNumber, fieldName, fieldID) {
+	// 	const sqlQuery = 'INSERT INTO LicensedAreas (licenseNumber, fieldName, fieldID) VALUE (?, ?, ?)';
+	// 	try {
+	// 		const result = this.dbService.sendQuery(sqlQuery, [licenseNumber, fieldName, fieldID])
+	// 		return result;
+	// 	} catch (error) {
+	// 		throw error
+	// 	}
+	// }
+	addArea(licenseNum, field) {
+		const sqlQuery = 'INSERT INTO LicensedAreas (licenseNumber, fieldName) VALUES (?, ?)';
+		const params = [licenseNum, field];
 		try {
-			const result = this.dbService.query(sqlQuery, [licenseNumber, fieldName, fieldID])
+			const result = this.dbService.sendQuery(sqlQuery, params)
 			return result;
 		} catch (error) {
 			throw error

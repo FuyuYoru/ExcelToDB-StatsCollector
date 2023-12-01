@@ -39,6 +39,15 @@ export const RedactableTable = ({ tableName }) => {
 		})
 	}
 
+	const handleSendData = () => {
+		if (!data && !Object.keys(data).length > 0){
+			return;
+		}
+		Object.values(data).map((value, index) => {
+			window.sqlite.tryAddWell(value);
+		})
+	}
+
 	const [isSelection, setIsSelection] = useState({
 		state: false,
 		colNumber: null,
@@ -150,7 +159,10 @@ export const RedactableTable = ({ tableName }) => {
 					}
 				</tbody>
 			</table>
+			<div className="buttonsContainer">
+				<button onClick={handleSendData}>Отправить</button>
+			</div>
 		</>
-		: <p>No data selected</p>);
-
+		:
+		<p>No data selected</p>);
 }

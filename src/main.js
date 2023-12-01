@@ -1,40 +1,38 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 const { getExcelSheetnames, getExcelData } = require('./services/python/pythonScripts')
-import db from './models/dbnmgr';
 
 
-// Handle creating/removing shortcuts on Windows when installing/uninstalling.
+import DatabaseService from './database/database';
+import LicensedAreas from './services/sqlite/licensedAreasService';
+import Wells from './services/sqlite/wellsService';
+const appDir = require('electron').app.getAppPath();
+const dbPath = path.join(appDir, './src/database/forTest.db');
+const dbService = new DatabaseService(dbPath)
+const licensedAreas = new LicensedAreas(dbService);
+const wells = new Wells(dbService);
+
+
 if (require('electron-squirrel-startup')) {
 	app.quit();
 }
 
 const createWindow = () => {
-	// Create the browser window.
 	const mainWindow = new BrowserWindow({
 		width: 1200,
 		height: 600,
 		webPreferences: {
-			// as a best practice + safety, nodeIntegration should be false
-			// this keeps the renderer thread having direct access to Node
 			contextIsolation: true,
 			nodeIntegration: true,
-			// will sanitize JS code to be safe
 			worldSafeExecuteJavascript: true,
 			hardwareAcceleration: false,
-			// is a feature that ensures that both your
-			// preload scripts and Electron's internal logic tunes in seperate context:
-			// contextIsolation: true,
-			// preload script exposes the parts needed for renderer from main thread:
 			preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
 		},
 	});
 
-	// and load the index.html of the app.
 	mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
 
-	// Open the DevTools.
-	mainWindow.webContents.openDevTools();
+	// mainWindow.webContents.openDevTools();
 	ipcMain.handle('get-excel-sheetnames', async (event, selectedFile) => {
 		try {
 			const sheetnames = await getExcelSheetnames(JSON.parse(selectedFile));
@@ -54,25 +52,45 @@ const createWindow = () => {
 		}
 	});
 
-	ipcMain.on('tryDB', async (event) => {
+	ipcMain.handle('sqlite:test', async (event, data) => {
 		try {
-			const result = db.prepare('SELECT id, "user" FROM users;').get()
-			event.sender.send('dbreply', result);
+			const testResult = licensedAreas.testMethod(data);
+			return testResult
 		} catch (error) {
-			event.sender.send('dbreply', error.message);
+			throw error
 		}
 	})
+
+	ipcMain.handle('sqlite:getAll', async (event) => {
+		try {
+			const testResult = licensedAreas.getAllAreas();
+			return testResult
+		} catch (error) {
+			throw error
+		}
+	})
+	ipcMain.handle('sqlite:addWell', async (event, data) => {
+		try {
+			const { areaLicense, field } = data;
+			const request = await licensedAreas.getArea(areaLicense, field);
+			if (request.result.length === 0) {
+				const areaInsertResult = await licensedAreas.addArea(areaLicense, field);
+				const wellInsertResult = await wells.addWell(data, areaInsertResult.result);
+				return wellInsertResult;
+			} else {
+				const licenseAreaID = request.result[0].ID;
+				const wellInsertResult = await wells.addWell(data, licenseAreaID);
+				return wellInsertResult;
+			}
+		} catch (error) {
+			throw error;
+		}
+	});
+
 };
 
-
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-// Some APIs can only be used after this event occurs.
 app.on('ready', createWindow);
 
-// Quit when all windows are closed, except on macOS. There, it's common
-// for applications and their menu bar to stay active until the user quits
-// explicitly with Cmd + Q.
 app.on('window-all-closed', () => {
 	if (process.platform !== 'darwin') {
 		app.quit();
@@ -80,12 +98,7 @@ app.on('window-all-closed', () => {
 });
 
 app.on('activate', () => {
-	// On OS X it's common to re-create a window in the app when the
-	// dock icon is clicked and there are no other windows open.
 	if (BrowserWindow.getAllWindows().length === 0) {
 		createWindow();
 	}
 });
-
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and import them here.

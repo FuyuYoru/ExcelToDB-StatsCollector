@@ -4,15 +4,37 @@ class DatabaseService {
 	constructor(databasePath) {
 		this.db = new Database(databasePath, { fileMustExist: true });
 	}
-	query(sqlQuery, params) {
+	getQuery(sqlQuery, params) {
 		try {
 			const statement = this.db.prepare(sqlQuery);
-			const result = statement.all(params);
-			return result;
+			const result = params ? statement.all(params) : statement.all();
+			return {
+				status: 'success',
+				result: result
+			};
 		} catch (error) {
-			throw error
+			return {
+				status: 'error',
+				message: error.message
+			}
 		}
 	}
+	sendQuery(sqlQuery, params) {
+		try {
+			const statement = this.db.prepare(sqlQuery);
+			const result = params ? statement.run(params) : statement.run();
+			return {
+				status: 'success',
+				result: result.lastInsertRowid
+			};
+		} catch (error) {
+			return {
+				status: 'error',
+				message: error.message
+			}
+		}
+	}
+
 }
 
 module.exports = DatabaseService;
