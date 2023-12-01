@@ -51,12 +51,12 @@ const DataCollectionTab = () => {
 			return;
 		}
 		try {
-			const request = {
+			const data = {
 				path: selectedFile.path,
 				name: selectedFile.name,
 			};
 	
-			const responseData = await window.pythonAPI.getSheetnames(request);
+			const responseData = await window.pythonAPI.getSheetnames(data);
 	
 			const modalData = {
 				title: responseData.filename,

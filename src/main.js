@@ -86,6 +86,14 @@ const createWindow = () => {
 			throw error;
 		}
 	});
+	ipcMain.handle('sqlite:getAllWells', async (event, data) => {
+		try {
+			const testResult = wells.getWells(data);
+			return testResult
+		} catch (error) {
+			throw error
+		}
+	})
 
 };
 

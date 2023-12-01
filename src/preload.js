@@ -36,5 +36,10 @@ contextBridge.exposeInMainWorld('sqlite', {
 		const result = await ipcRenderer.invoke('sqlite:addWell', data);
 		console.log(result)
 		return result
-	}
+	},
+	tryGetWells: async (params) => {
+		const result = await ipcRenderer.invoke('sqlite:getAllWells', params);
+		console.log(result)
+		return result
+	},
 }) 
