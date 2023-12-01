@@ -26,25 +26,25 @@ module.exports = {
 			name: '@electron-forge/plugin-auto-unpack-natives',
 			config: {},
 		},
-		{
-			name: '@electron-forge/plugin-webpack',
-			config: {
-				devContentSecurityPolicy: 'default-src \'self\' \'unsafe-inline\' data:; script-src \'self\' \'unsafe-eval\' \'unsafe-inline\' data:',
-				mainConfig: './webpack.main.config.js',
-				renderer: {
-					config: './webpack.renderer.config.js',
-					entryPoints: [
-						{
-							html: './src/index.html',
-							js: './src/renderer.js',
-							name: 'main_window',
-							preload: {
-								js: './src/preload.js',
-							},
-						},
-					],
-				},
-			},
-		},
+		// {
+		// 	name: '@electron-forge/plugin-webpack',
+		// 	config: {
+		// 		devContentSecurityPolicy: 'default-src \'self\' \'unsafe-inline\' data:; script-src \'self\' \'unsafe-eval\' \'unsafe-inline\' data:',
+		// 		mainConfig: './webpack.main.config.js',
+		// 		renderer: {
+		// 			config: './webpack.renderer.config.js',
+		// 			entryPoints: [
+		// 				{
+		// 					html: './src/index.html',
+		// 					js: './src/renderer.js',
+		// 					name: 'main_window',
+		// 					preload: {
+		// 						js: './src/preload.js',
+		// 					},
+		// 				},
+		// 			],
+		// 		},
+		// 	},
+		// },
 	],
 };

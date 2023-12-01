@@ -1,7 +1,8 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 const { getExcelSheetnames, getExcelData } = require('./services/python/pythonScripts')
-
+// declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
+// declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
 
 import DatabaseService from './database/database';
 import LicensedAreas from './services/sqlite/licensedAreasService';
@@ -30,7 +31,8 @@ const createWindow = () => {
 		},
 	});
 
-	mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
+	// mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
+	mainWindow.loadURL(path.resolve(__dirname, './src/renderer.js'));
 
 	// mainWindow.webContents.openDevTools();
 	ipcMain.handle('get-excel-sheetnames', async (event, selectedFile) => {

@@ -3,6 +3,19 @@ const webpack = require('webpack')
 
 rules.push(
 	{
+		test: /\.(ts|tsx)$/,
+		exclude: /node_modules/,
+		use: [
+			"babel-loader",
+			{
+				loader: "ts-loader",
+				options: {
+					transpileOnly: true,
+				},
+			},
+		],
+	},
+	{
 		test: /\.(js|jsx)$/,
 		exclude: /node_modules/,
 		use: {
@@ -39,8 +52,10 @@ module.exports = {
 	module: {
 		rules,
 	},
+	mode: 'development',
 	// target: 'node',
 	resolve: {
+		// extensions: ['.js', '.ts', '.jsx', '.tsx', '.css'],
 		fallback: {
 			"fs": false,
 			"child_process": false,
