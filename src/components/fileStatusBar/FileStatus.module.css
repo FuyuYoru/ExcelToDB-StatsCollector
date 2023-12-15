@@ -1,0 +1,25 @@
+.statusContainer {
+	display: flex;
+	flex-direction: row;
+	gap: 5px;
+	height: 100%;
+	align-items: center;
+	user-select: none;
+
+}
+
+.statusContainer>span {
+	/* font-size: 24px; */
+}
+
+.statusContainer>span svg {
+	font-size: 15pt;
+}
+
+.statusText {
+	font-size: 12pt;
+}
+
+.statucIcon {
+	/* font-size: 18px; */
+}

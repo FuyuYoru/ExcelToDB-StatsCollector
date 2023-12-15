@@ -1,0 +1,53 @@
+.dataListContainer {
+	border-top: 1px solid white;
+	border-bottom: 1px solid white;
+}
+
+.dataList {
+	display: flex;
+	height: auto;
+	flex-direction: row;
+	list-style-type: none;
+	text-align: center;
+	padding: 0px;
+	margin: 0px;
+	/* overflow-x: scroll; */
+	min-height: 3rem;
+}
+
+.dataList li {
+	position: relative;
+	border: none;
+	white-space: pre-wrap;
+	text-overflow: clip;
+	overflow: hidden;
+	width: 10%;
+	/* height: 100%; */
+	min-width: 150px;
+	padding: 0px;
+	user-select: none;
+}
+
+.dataList li:hover {
+	background-color: rgba(0, 255, 255, 0.56);
+}
+
+.dataList li:hover .icons {
+	opacity: 1;
+
+}
+
+.dataList_hidden {
+	display: none;
+	height: auto;
+	flex-direction: row;
+	list-style-type: none;
+	text-align: center;
+	padding: 0px;
+	margin: 0px;
+	/* overflow-x: scroll; */
+	min-height: 3rem;
+}
+.hiddenDataContainer {
+	padding-left: 150px;
+}

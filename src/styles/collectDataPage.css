@@ -1,0 +1,43 @@
+.collectDataPage__mainContainer {
+	display: flex;
+	flex-direction: row;
+	margin: 0px;
+	padding: 15px;
+	gap: 10px
+}
+
+.loadedFiles__container {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	gap: 10px;
+}
+
+.tabs__container {
+	display: flex;
+	flex-direction: column;
+	flex: 4;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	background-color: black;
+	overflow: hidden;
+	max-height: 85vh;
+	height: min-content;
+}
+
+.info__container {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+}
+
+.tabContent {
+	gap: 10px;
+	flex-direction: column;
+	display: flex;
+	padding-top: 5px;
+}
+
+.activeFile {
+	border-left: 2px solid #00acb1;
+}

@@ -1,0 +1,154 @@
+.dataList {
+	display: flex;
+	flex-direction: row;
+	list-style-type: none;
+	text-align: center;
+	padding: 0px;
+	margin: 0px;
+	/* overflow-x: scroll; */
+	min-height: 3rem;
+}
+
+.dataList li {
+	position: relative;
+	/* border-left: 1px solid white; */
+	/* border-right: 1px solid white; */
+	white-space: pre-wrap;
+	text-overflow: clip;
+	overflow: hidden;
+	width: 10%;
+	/* height: 100%; */
+	min-width: 150px;
+	padding: 0px;
+	user-select: none;
+}
+
+.icons {
+	display: flex;
+	/* gap: 10px; */
+	position: absolute;
+	/* right: 0; */
+	height: 100%;
+	/* width: 100%; */
+	/* bottom: 25%; */
+	/* z-index: 1; */
+	opacity: 0;
+	transition: opacity 0.3s;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.icons * {
+	cursor: pointer;
+}
+
+.inputField {
+	display: block;
+}
+
+.dataList li:hover {
+	background-color: rgba(0, 255, 255, 0.56);
+}
+
+.dataList li:hover .icons {
+	opacity: 1;
+
+}
+
+.resizableText {
+	word-wrap: break-word;
+	height: 100%;
+	width: 100%;
+}
+
+.resizableText input {
+	padding: 5px
+}
+
+.selectedItem {
+	/* border: 2px solid red; */
+	word-wrap: break-word;
+	height: 100%;
+	width: 100%;
+	/* scale: 1.05; */
+	/* opacity: 2; */
+	background: teal;
+	/* position: absolute; */
+	/* filter: brightness(); */
+	filter: drop-shadow(0px 0px 2px black);
+}
+
+.redactableField {
+	height: 100%;
+	display: flex;
+	flex-direction: row-reverse;
+}
+
+.inputContainer {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.inputContainer * {
+	flex: 1
+}
+
+.highlighted {
+	background: teal;
+	/* position: absolute; */
+	/* filter: brightness(); */
+	filter: drop-shadow(0px 0px 2px black);
+}
+
+.boardHeader {
+	position: sticky;
+	top: 0;
+	z-index: 5;
+	background: black;
+	display: flex;
+	flex-direction: row;
+	list-style-type: none;
+	text-align: center;
+	padding: 0px;
+	margin: 0px;
+	/* overflow-x: scroll; */
+	min-height: 3rem;
+}
+
+.boardHeader li {
+	position: relative;
+	/* border-left: 1px solid white; */
+	/* border-right: 1px solid white; */
+	white-space: pre-wrap;
+	text-overflow: clip;
+	overflow: hidden;
+	width: 10%;
+	background-color: black;
+	min-width: 150px;
+	padding: 0px;
+	user-select: none;
+}
+
+.collapsible {
+	display: none;
+}
+
+.dataList_hidden {
+	display: none;
+	height: auto;
+	flex-direction: row;
+	list-style-type: none;
+	text-align: center;
+	padding: 0px;
+	margin: 0px;
+	/* overflow-x: scroll; */
+	min-height: 3rem;
+}
+.hiddenDataContainer {
+	padding-left: 150px;
+}
+
+.dataListContainer {
+	border: none;
+}

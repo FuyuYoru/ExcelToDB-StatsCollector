@@ -1,0 +1,70 @@
+.redactableField {
+	position: relative;
+}
+
+.redactableField:hover .icons{
+	opacity: 1;
+}
+
+.icons {
+	display: flex;
+	position: absolute;
+	height: 100%;
+	bottom: 0;
+	opacity: 0;
+	right: 0;
+	transition: opacity 0.3s;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.icons * {
+	cursor: pointer;
+}
+
+.icons > span:hover {
+	background-color: rgba(255, 255, 255, 0.5);
+}
+
+.inputField {
+	display: block;
+}
+
+.resizableText {
+	word-wrap: break-word;
+	height: 100%;
+	width: 100%;
+}
+
+.resizableText input {
+	padding: 5px
+}
+
+.selectedItem {
+	/* border: 2px solid red; */
+	word-wrap: break-word;
+	height: 100%;
+	width: 100%;
+	/* scale: 1.05; */
+	/* opacity: 2; */
+	background: teal;
+	/* position: absolute; */
+	/* filter: brightness(); */
+	filter: drop-shadow(1px 1px 2px teal);
+}
+
+.redactableField {
+	height: 100%;
+	/* display: flex;
+	flex-direction: row-reverse; */
+}
+
+.inputContainer {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.inputContainer * {
+	flex: 1
+}
